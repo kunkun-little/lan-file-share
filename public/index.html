@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f6f7fb" />
+    <title>AirFold · 局域网文件互传</title>
+    <link rel="icon" href="/mark.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap header-inner">
+        <a class="brand" href="/" aria-label="AirFold 首页"
+          ><img src="/mark.svg" alt="" />AirFold</a
+        >
+        <span class="product-name">局域网文件传输</span>
+        <div class="header-actions">
+          <span id="network" class="status"><i></i><span>正在连接</span></span>
+          <button
+            class="help icon-button"
+            id="help"
+            aria-label="使用说明"
+            title="使用说明"
+          >
+            <i data-icon="help"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="wrap">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="grid-floor" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <div class="hero-label"><i data-icon="radio"></i> 局域网工作台</div>
+          <h1 id="hero-title">跨设备文件互传<span>.</span></h1>
+          <p>连接同一网络，在电脑与手机之间轻松收发文件。</p>
+          <button class="connect" id="connect">
+            <i data-icon="qr"></i>扫码连接设备
+          </button>
+        </div>
+        <div class="scene" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="orbit orbit-2"></div>
+          <div class="laptop">
+            <div class="lid">
+              <div class="glass">
+                <div class="ribbon r1"></div>
+                <div class="ribbon r2"></div>
+                <div class="ribbon r3"></div>
+              </div>
+            </div>
+            <div class="base">
+              <div class="keys"></div>
+              <div class="trackpad"></div>
+            </div>
+          </div>
+          <div class="phone">
+            <div class="phone-glass">
+              <div class="phone-wave"></div>
+              <div class="phone-wave wave2"></div>
+            </div>
+          </div>
+          <div class="floating-doc"><span></span><b></b><b></b></div>
+          <div class="spark sp1">✦</div>
+          <div class="spark sp2">✦</div>
+          <div class="spark sp3">✧</div>
+        </div>
+      </section>
+      <div class="workspace">
+        <section class="panel library" aria-labelledby="library-title">
+          <div class="panel-head">
+            <div class="panel-title">
+              <span class="title-icon purple"><i data-icon="folder"></i></span>
+              <h2 id="library-title">共享文件</h2>
+            </div>
+            <button
+              class="icon-button refresh"
+              id="refresh"
+              aria-label="刷新文件列表"
+              title="刷新文件列表"
+            >
+              <i data-icon="refresh"></i>
+            </button>
+          </div>
+          <nav id="crumbs" class="crumbs" aria-label="当前共享目录"></nav>
+          <div class="search-wrap">
+            <i data-icon="search"></i
+            ><input
+              type="search"
+              id="search"
+              aria-label="搜索当前目录"
+              placeholder="搜索当前目录的文件"
+            />
+          </div>
+          <div class="list-head">
+            <span>文件名称</span><span>大小</span><span>操作</span>
+          </div>
+          <div id="files" aria-live="polite"></div>
+          <div class="list-foot">
+            <span id="count">正在读取文件…</span
+            ><span><i data-icon="disk"></i>本地存储</span>
+          </div>
+        </section>
+        <section class="panel upload" aria-labelledby="upload-title">
+          <div class="panel-head">
+            <div class="panel-title">
+              <span class="title-icon mint"><i data-icon="upload"></i></span>
+              <h2 id="upload-title">上传文件</h2>
+            </div>
+          </div>
+          <div class="drop" id="drop">
+            <div class="upload-art" aria-hidden="true">
+              <span class="paper-back"></span
+              ><span class="paper-front"><i data-icon="up"></i></span>
+            </div>
+            <h3>
+              <span class="desktop-prompt">拖拽文件到这里</span
+              ><span class="mobile-prompt">从设备上传</span>
+            </h3>
+            <p>支持一次上传多个文件</p>
+            <button id="choose" class="primary">
+              <i data-icon="plus"></i>选择文件
+            </button>
+            <input id="picker" type="file" multiple hidden />
+          </div>
+          <div class="save-to">
+            <i data-icon="folder"></i><span>保存至</span
+            ><strong id="destination">共享目录</strong>
+          </div>
+          <div id="queue" aria-live="polite"></div>
+        </section>
+      </div>
+    </main>
+    <dialog id="dialog" aria-labelledby="dialog-title">
+      <div class="dialog-head">
+        <h2 id="dialog-title"></h2>
+        <button class="icon-button" id="close" aria-label="关闭">
+          <i data-icon="close"></i>
+        </button>
+      </div>
+      <div id="dialog-body"></div>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>
